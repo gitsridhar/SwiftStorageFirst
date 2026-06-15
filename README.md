@@ -692,3 +692,8 @@ Available operation types:
 - `CREATE_CONTAINER`: Create container
 - `LIST_CONTAINERS`: List containers
 - `LIST_OBJECTS`: List objects
+
+=======
+
+python swift_server.py 2> server.err
+python test_swift_mt.py > client.out
