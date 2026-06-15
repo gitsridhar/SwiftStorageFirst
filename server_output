@@ -1,0 +1,15 @@
+(.venv) sridharvenkat@MacBookPro-3 swiftclient % python swift_server.py
+Starting Swift Server on http://localhost:8080
+Database: swift_storage.db
+ * Serving Flask app 'swift_server'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.145:8080
+Press CTRL+C to quit
+ * Restarting with stat
+Starting Swift Server on http://localhost:8080
+Database: swift_storage.db
+ * Debugger is active!
+ * Debugger PIN: 394-454-877

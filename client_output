@@ -1,0 +1,186 @@
+
+╔══════════════════════════════════════════════════════════════════╗
+║     Multithreaded Swift Client Test Suite                       ║
+║     Queue-based Concurrent Operations Demo                      ║
+╚══════════════════════════════════════════════════════════════════╝
+    
+
+======================================================================
+  Initializing Multithreaded Swift Client
+======================================================================
+✓ Client initialized with 1000 worker threads (MASSIVE SCALE)
+  Server URL: http://localhost:8080
+  Account: mt_demo_account
+
+======================================================================
+  Starting Worker Threads
+======================================================================
+✓ 1000 worker threads started
+
+======================================================================
+  Test 1: Creating 1000 Containers Concurrently
+======================================================================
+Queuing 1000 container creation operations...
+
+✓ Created 1000 containers in 1.71s
+  Throughput: 585.33 containers/second
+
+======================================================================
+  Listing All Containers
+======================================================================
+Fetching container list from server...
+
+Total containers in account: 932
+
+First 20 containers:
+     1. backups              -  265 objects,  7436000 bytes
+     2. container_0000       - 3262 objects, 19383600 bytes
+     3. container_0001       - 1859 objects, 189383600 bytes
+     4. container_0002       -  263 objects,  7273000 bytes
+     5. container_0003       - 6330 objects, 87699000 bytes
+     6. container_0004       -  110 objects,   324000 bytes
+     7. container_0005       -  110 objects,   324000 bytes
+     8. container_0006       -   10 objects,    46000 bytes
+     9. container_0007       -   10 objects,    46000 bytes
+    10. container_0008       -   10 objects,    46000 bytes
+    11. container_0009       -   10 objects,    46000 bytes
+    12. container_0010       -   10 objects,    48000 bytes
+    13. container_0011       -   10 objects,    48000 bytes
+    14. container_0012       -   10 objects,    48000 bytes
+    15. container_0013       -   10 objects,    48000 bytes
+    16. container_0014       -   10 objects,    48000 bytes
+    17. container_0015       -   10 objects,    48000 bytes
+    18. container_0016       -   10 objects,    48000 bytes
+    19. container_0017       -   10 objects,    48000 bytes
+    20. container_0018       -   10 objects,    48000 bytes
+
+  ... (892 more containers) ...
+
+Last 20 containers:
+   913. container_0978       -    8 objects,    40000 bytes
+   914. container_0979       -    4 objects,    20000 bytes
+   915. container_0981       -    8 objects,    40000 bytes
+   916. container_0983       -    3 objects,    15000 bytes
+   917. container_0987       -   10 objects,    50000 bytes
+   918. container_0988       -    8 objects,    40000 bytes
+   919. container_0989       -    2 objects,    10000 bytes
+   920. container_0990       -    4 objects,    20000 bytes
+   921. container_0991       -    0 objects,        0 bytes
+   922. container_0992       -    4 objects,    20000 bytes
+   923. container_0993       -    3 objects,    15000 bytes
+   924. container_0994       -    1 objects,     5000 bytes
+   925. container_0995       -    5 objects,    25000 bytes
+   926. container_0997       -    2 objects,    10000 bytes
+   927. container_0998       -    3 objects,    15000 bytes
+   928. container_0999       -    4 objects,    20000 bytes
+   929. documents            - 3507 objects, 19813930 bytes
+   930. images               - 1865 objects, 188948480 bytes
+   931. logs                 - 5144 objects, 69874890 bytes
+   932. videos               -    0 objects,        0 bytes
+
+======================================================================
+  Test 1.5: Filling All 1000 Containers with Data
+======================================================================
+Preparing to upload 10 objects to each of 1000 containers...
+Total: 10,000 objects across 1000 containers
+Queued 10000 upload operations
+Waiting for completion...
+
+✓ Filled all 1000 containers in 15.55s
+  Total objects uploaded: 10000
+  Throughput: 642.95 objects/second
+  Data uploaded: ~100 MB
+
+Verifying containers now have data...
+✓ 928/932 containers now contain data
+
+Sample of filled containers (first 10):
+  backups              -  265 objects,  7436000 bytes
+  container_0000       - 3262 objects, 19383600 bytes
+  container_0001       - 1859 objects, 189383600 bytes
+  container_0002       -  263 objects,  7273000 bytes
+  container_0003       - 6330 objects, 87699000 bytes
+  container_0004       -  110 objects,   324000 bytes
+  container_0005       -  110 objects,   324000 bytes
+  container_0006       -   10 objects,    46000 bytes
+  container_0007       -   10 objects,    46000 bytes
+  container_0008       -   10 objects,    46000 bytes
+
+======================================================================
+  Test 2: Additional Batch Upload (5000 Objects to container_0000)
+======================================================================
+Preparing to upload 5000 objects (~50000KB total)
+
+✓ Uploaded 5000 objects in 5.01s
+  Average: 1.00ms per object
+
+======================================================================
+  Test 3: Batch Download (5000 Objects Concurrently)
+======================================================================
+
+✓ Downloaded 5000 objects in 17.92s
+  Average: 3.58ms per object
+
+Verifying sample of downloaded data (first 100 objects)...
+✓ Verified 100/100 sample objects (all 5000 downloaded)
+
+======================================================================
+  Test 4: Mixed Operations (2000 Uploads + 2000 Downloads)
+======================================================================
+
+✓ Completed 4000 mixed operations in 5.06s
+
+======================================================================
+  Test 5: File Upload/Download Operations (500 Files)
+======================================================================
+Created 500 test files (~25MB total)
+✓ Uploaded 500 files
+✓ Downloaded 500 files
+
+Verifying file contents...
+✓ Verified 308/500 files
+  ⚠ 192 files were not downloaded (may still be in queue)
+
+======================================================================
+  Test 6: MASSIVE Batch with Progress Tracking (10000 Objects)
+======================================================================
+Preparing massive batch: 10000 objects (~500MB total)
+
+✓ Completed 10000 uploads in 12.03s
+  Throughput: 830.98 operations/second
+  Data rate: 41.55 MB/s
+
+======================================================================
+  Final Statistics
+======================================================================
+Total Operations:     36000
+Successful:           12534
+Failed:               23466
+Success Rate:         34.8%
+Average Duration:     987.61ms
+Total Duration:       35553.83s
+
+======================================================================
+  Performance Comparison (Sequential vs 1000 Threads)
+======================================================================
+
+Sequential upload (100 objects, 10KB each)...
+  Time: 0.77s
+  Throughput: 129.64 ops/s
+
+Concurrent upload (100 objects, 10KB each, 1000 threads)...
+  Time: 0.37s
+  Throughput: 272.85 ops/s
+
+✓ Speedup: 2.10x faster with 1000-thread multithreading
+  Sequential: 0.77s
+  Concurrent: 0.37s
+
+======================================================================
+  Cleanup
+======================================================================
+✓ Worker threads stopped
+
+======================================================================
+  ✓ All multithreaded tests passed!
+======================================================================
